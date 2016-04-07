@@ -35,7 +35,7 @@ public class RandomGenerator {
         for (int i = 0; i <= (str.length() - len); i++) {
             stringList.add(str.substring(i, i + len));
         }
-        return (String[]) stringList.toArray();
+        return stringList.toArray(new String[0]);
     }
 }
 
