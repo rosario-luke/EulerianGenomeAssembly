@@ -4,8 +4,8 @@
 public class MainTest {
 
     public static void main(String[] args){
-        long length = 6;
-        int subLength = 5;
+        long length = 10;
+        int subLength = 3;
         String largeString = RandomGenerator.generateRandomString(length);
         String[] pieces = RandomGenerator.breakString(subLength, largeString);
 
@@ -15,6 +15,14 @@ public class MainTest {
         }
 
         GenomeSolver solver = new GenomeSolver(pieces);
-
+        String solution = solver.solve();
+        if (solution == null){
+            System.out.println("Could not solve puzzle");
+        } else {
+            System.out.println("Solution: " + solution);
+            if (solution.equals(largeString)){
+                System.out.println("Solution Correct!");
+            }
+        }
     }
 }
