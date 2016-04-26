@@ -11,6 +11,8 @@ public class GenomeSolver {
     private HashMap<String, List<String>> nodeMap;
     private HashMap<String, Counter> degreeIn;
     private HashMap<String, Counter> degreeOut;
+    private boolean foundEnd;
+    private boolean foundStart;
     private List<String> allNodes;
     private String[] lmers;
 
@@ -46,7 +48,6 @@ public class GenomeSolver {
             degreeOut.get(front).increment();
             degreeIn.get(back).increment();
         }
-        System.out.println(nodeMap);
     }
 
     public String solve(){
@@ -92,8 +93,6 @@ public class GenomeSolver {
 
 
     public boolean canSolve(){
-        boolean foundStart = false;
-        boolean foundEnd = false;
         for (String node : allNodes){
             int in = degreeIn.containsKey(node) ? degreeIn.get(node).getCount() : 0;
             int out = degreeOut.containsKey(node) ? degreeOut.get(node).getCount() : 0;
@@ -108,16 +107,20 @@ public class GenomeSolver {
                 }
             }
         }
-        if (foundStart && foundEnd){
+        /*if (foundStart && foundEnd){
             System.out.println("Can solve");
             return true;
-        }
-        System.out.println("Couldn't find start and end");
-        return false;
+        }*/
+        /*System.out.println("Couldn't find start and end");
+        return false;*/
+        return true;
     }
 
 
     public String findStart(){
+        if (!foundStart){
+            return allNodes.get(0);
+        }
         for (String node : allNodes){
             int in = degreeIn.containsKey(node) ? degreeIn.get(node).getCount() : 0;
             int out = degreeOut.containsKey(node) ? degreeOut.get(node).getCount() : 0;
